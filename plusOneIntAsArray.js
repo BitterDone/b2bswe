@@ -1,26 +1,25 @@
 
 const addOne = numArray => {
     let carry = 1
-    const incremented = Array(numArray.length + 1)
-console.log(numArray.length);
-console.log(incremented.length);
+    const incremented = numArray.map(x=>x)
+    incremented.unshift(0)
+    numArray.unshift(0)
 
     numArray.forEach((_n, _index) => {
         const reverseIndex = numArray.length - 1 - _index
-        // const reverseIndex = numArray.length - _index
         const num = numArray[reverseIndex]
 
-        console.log(`\nLoop ${_index}: ${reverseIndex} = ${num}`)
+        // console.log(`\nLoop ${_index}: ${reverseIndex} = ${num}`)
         if (num === 9) {
-            incremented[reverseIndex+1] = 0
+            incremented[reverseIndex] = 0
             carry = 1
         } else {
-            incremented[reverseIndex+1] = num + carry
+            incremented[reverseIndex] = num + carry
             carry = 0
         }        
-        console.log(`${num===9 ? 'C' : 'No c'}arry, set index ${reverseIndex} = ${incremented[reverseIndex+1]}`)
+        // console.log(`${num===9 ? 'C' : 'No c'}arry, set index ${reverseIndex} = ${incremented[reverseIndex]}`)
     })
-    incremented[0] = carry
+
     return parseInt(incremented.join(''))
 }
 
