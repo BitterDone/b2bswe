@@ -1,31 +1,37 @@
-const add = (a, b) => {
-    let sum_bitwise = (a | 0x0 )//>>> 0)//.toString(2)
-    let carry_bitwise = (b | 0x0 )//>>> 0)//.toString(2)
+// https://gist.github.com/wildlyinaccurate/8859257
+
+const add1 = (a, b) => {
+    let sum = a
+    let carry = b
 
     let x = 0
 
-    while (carry_bitwise != '0000' && x < 10) {
-        console.log(`\nLooping\n${sum_bitwise} sum_bitwise`)
-        console.log(`${carry_bitwise} carry_bitwise\n`)
+    while (carry && x < 10) {
+        console.log(`\nLooping\n${sum} sum`)
+        console.log(`${carry} carry\n`)
         
-        carry_bitwise = (sum_bitwise & carry_bitwise)//.toString(2)
-        console.log(`${carry_bitwise} carry loc`)
-        
-        sum_bitwise = (sum_bitwise ^ carry_bitwise)//.toString(2)
-        console.log(`${sum_bitwise} xor`)
+        sum = (a ^ b)
+        carry = (a & b) << 1
 
-        carry_bitwise = (carry_bitwise << 1)//.toString(2)
-        console.log(`${carry_bitwise} carry shift`)
+        a = sum
+        b = carry
         
         x++
     }
-    console.log(`Final sum: ${sum_bitwise}`)
+    console.log(`Final sum: ${sum}`)
 
-    return sum_bitwise
+    return sum
+}
+
+const add = (a, b) => {
+    const sum = a ^ b
+    const carry = (a & b) << 1
+
+    return (sum & carry) ? add(sum, carry) : sum ^ carry
 }
 
 const test = () => {
-    const sum = add(0x4,0x5)
+    const sum = add1(0x4,0x5)
     console.log(`add(4,5)=${sum} === ${4+5} : ${sum === 4+5}`)
 }
 
