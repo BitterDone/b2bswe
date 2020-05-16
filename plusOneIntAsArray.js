@@ -1,17 +1,20 @@
 
 
-const add = argsArray => {
-    console.log(argsArray)
-
+const addOne = argsArray => {
+    
     return 0
 }
 
 const test = () => {
-    const sum = add([1, 2, 3])
-    console.log(`add(4,5)=${sum} === ${4+5} : ${sum === 4+5}`)
+    let numArr = 123
+    const incremented = numArr + 1
+
+    numArr = numArr.toString().split('')
+    const sum = addOne(numArr)
+    console.log(`addOne(${numArr})=${sum} ${sum === incremented ? '=' : '!'}== ${incremented}`)
 }
 
 var args = process.argv.slice(2)
 
-add(args)
-// test()
+// addOne(args)
+test()
