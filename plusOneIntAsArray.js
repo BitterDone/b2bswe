@@ -24,12 +24,11 @@ console.log(incremented.length);
     return parseInt(incremented.join(''))
 }
 
-const test = () => {
-    let numArr = 999
-    const incremented = numArr + 1
+const run = args => {
+    let numArr = args[0] || '999'
+    const incremented = parseInt(numArr) + 1
     
     numArr = numArr
-        .toString()
         .split('')
         .map(num => parseInt(num))
     const sum = addOne(numArr)
@@ -38,5 +37,4 @@ const test = () => {
 
 var args = process.argv.slice(2)
 
-// addOne(args)
-test()
+run(args)
