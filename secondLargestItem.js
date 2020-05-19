@@ -1,6 +1,16 @@
 const find2ndLargest = (list) => {
     console.log(`list: ${list}`)
+
+    let first = -Infinity
+    let second = -Infinity
     
+    list.forEach(num => {
+        if (num > first) {
+            second = first
+            first = num
+        } else if (num != first && num > second) second = num
+    })
+    return second
 }
 
 const run = args => {
