@@ -1,6 +1,8 @@
 const find2ndLargest = (list) => {
     console.log(`list: ${list}`)
 
+    if (!list || list.length < 2) return -Infinity
+
     let first = -Infinity
     let second = -Infinity
     
